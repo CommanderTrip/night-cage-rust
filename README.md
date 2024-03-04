@@ -57,7 +57,7 @@ the process. The code will remain open sourced _FOREVER_, and credits for the or
 ## Version 1.5.0 Goals
 
 - [ ] Persistence/Game Saves
-- [ ] LAN Network Multiplayer
+- [ ] LAN Multiplayer
 
 ## Version 2.0.0 
 
