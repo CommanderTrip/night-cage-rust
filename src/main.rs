@@ -1,11 +1,11 @@
 mod ui;
 
-use crate::ui::components::button::handle_button;
 use crate::ui::views::main_menu::main_menu;
 use bevy::input::common_conditions::input_toggle_active;
 use bevy::prelude::*;
 use bevy_editor_pls::prelude::*;
 use bevy_inspector_egui::quick::WorldInspectorPlugin;
+use crate::ui::components::main_menu_button::handle_button;
 
 fn main() {
     App::new()

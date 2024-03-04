@@ -1,4 +1,5 @@
-use crate::ui::components::button::{primary_button_style, primary_button_text};
+use crate::ui::components::main_menu_button::{primary_button_style, primary_button_text};
+use crate::ui::components::main_menu_button_types::{MainMenuButton, MainMenuButtonType};
 use crate::ui::styles::colors::CustomColors;
 use bevy::asset::AssetServer;
 use bevy::core::Name;
@@ -58,27 +59,40 @@ pub fn main_menu(commands: &mut Commands, asset_server: &Res<AssetServer>) {
                         ..default()
                     },
                 ))
+                // Define the buttons on the main Menu
                 .with_children(|parent| {
                     parent
                         .spawn((Name::new("Start Button"), primary_button_style()))
+                        .insert(MainMenuButton {
+                            button_type: MainMenuButtonType::Start,
+                        })
                         .with_children(|parent| {
                             parent.spawn(primary_button_text(asset_server, "Start"));
                         });
 
                     parent
                         .spawn((Name::new("Options Button"), primary_button_style()))
+                        .insert(MainMenuButton {
+                            button_type: MainMenuButtonType::Options,
+                        })
                         .with_children(|parent| {
                             parent.spawn(primary_button_text(asset_server, "Options"));
                         });
 
                     parent
                         .spawn((Name::new("About Button"), primary_button_style()))
+                        .insert(MainMenuButton {
+                            button_type: MainMenuButtonType::About,
+                        })
                         .with_children(|parent| {
                             parent.spawn(primary_button_text(asset_server, "About"));
                         });
 
                     parent
                         .spawn((Name::new("Exit Button"), primary_button_style()))
+                        .insert(MainMenuButton {
+                            button_type: MainMenuButtonType::Exit,
+                        })
                         .with_children(|parent| {
                             parent.spawn(primary_button_text(asset_server, "Exit"));
                         });
