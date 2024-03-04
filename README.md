@@ -37,6 +37,12 @@ the process. The code will remain open sourced _FOREVER_, and credits for the or
 - [ ] Options Page
 - [ ] Exit Button
 
+### Fixes/Improvement Ideas
+
+- [ ] Make buttons have rounded corners
+- [ ] Make the main menu into a Bevy plugin 
+- [ ] Fix Main menu font size flickering
+
 ## Version 1.0.0 Goals
 
 - [ ] Improved Atmosphere

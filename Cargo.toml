@@ -2,7 +2,7 @@
 name = "night-cage-rust"
 version = "0.1.0"
 edition = "2021"
-rust-version = "1.76.0"
+rust-version = "1.74.0"
 readme = "README.md"
 license = "GPL-3"
 
@@ -12,7 +12,6 @@ license = "GPL-3"
 bevy = "0.13.0"
 bevy-inspector-egui = "0.23.3"
 bevy_editor_pls = "0.8.0"
-bevy_vector_shapes = "0.7.0"
 
 # Enable a small amount of optimization in debug mode
 [profile.dev]
