@@ -1,5 +1,6 @@
 use crate::ui::components::main_menu_button_types::{MainMenuButton, MainMenuButtonType};
 use crate::ui::styles::colors::CustomColors;
+use bevy::app::AppExit;
 use bevy::prelude::*;
 use bevy::utils::default;
 
@@ -9,7 +10,9 @@ pub fn primary_button_style() -> ButtonBundle {
         background_color: CustomColors::BLACK.into(),
         border_color: CustomColors::TAN.into(),
         style: Style {
-            ..Default::default()
+            min_width: Val::Percent(50.0),
+            justify_content: JustifyContent::Center,
+            ..default()
         },
         ..default()
     }
@@ -27,13 +30,14 @@ pub fn primary_button_text(asset_server: &Res<AssetServer>, text: &str) -> TextB
 }
 
 #[allow(clippy::type_complexity)]
-pub fn handle_button(
+pub fn handle_main_menu_buttons(
     mut interaction_query: Query<
         (&Interaction, &mut Style, &Children, &MainMenuButton),
         Changed<Interaction>,
     >,
     mut text_query: Query<&mut Text>,
     asset_server: Res<AssetServer>,
+    mut exit: EventWriter<AppExit>,
 ) {
     for (interaction, mut style, children, button) in &mut interaction_query {
         let mut text = text_query.get_mut(children[0]).unwrap();
@@ -42,19 +46,13 @@ pub fn handle_button(
                 MainMenuButtonType::Start => {
                     println!("Start");
                 }
-                MainMenuButtonType::Options => {
-                    println!("Options");
-                }
-                MainMenuButtonType::About => {
-                    println!("About");
-                }
+                MainMenuButtonType::Options => navigate_to_options(),
+                MainMenuButtonType::About => navigate_to_about(),
                 MainMenuButtonType::Exit => {
-                    println!("Exit");
+                    exit.send(AppExit);
                 }
             },
 
-            // FIXME: When changing fonts, the size of the text field changes too. If you put the
-            //  cursor in the right spot, you can flicker between NONE and HOVERED and it looks bad.
             Interaction::Hovered => {
                 style.border = UiRect::bottom(Val::Px(2.0));
                 text.sections[0].style.font = asset_server.load("fonts/Labrada-Italic.ttf")
@@ -65,4 +63,11 @@ pub fn handle_button(
             }
         }
     }
+}
+fn navigate_to_options() {
+    println!("op");
+}
+
+fn navigate_to_about() {
+    println!("ab");
 }

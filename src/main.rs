@@ -1,11 +1,10 @@
+mod main_menu;
 mod ui;
 
+use crate::ui::components::main_menu_button::handle_main_menu_buttons;
 use crate::ui::views::main_menu::main_menu;
-use bevy::input::common_conditions::input_toggle_active;
 use bevy::prelude::*;
 use bevy_editor_pls::prelude::*;
-use bevy_inspector_egui::quick::WorldInspectorPlugin;
-use crate::ui::components::main_menu_button::handle_button;
 
 fn main() {
     App::new()
@@ -22,12 +21,9 @@ fn main() {
                     ..default()
                 }),
         )
-        .add_plugins(
-            WorldInspectorPlugin::default().run_if(input_toggle_active(false, KeyCode::Backquote)),
-        )
         .add_plugins(EditorPlugin::default())
         .add_systems(Startup, setup)
-        .add_systems(Update, handle_button)
+        .add_systems(Update, handle_main_menu_buttons)
         .run();
 }
 
